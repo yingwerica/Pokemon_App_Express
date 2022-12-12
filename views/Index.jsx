@@ -10,6 +10,18 @@ export default class Index extends Component {
     return (
       <div style={myStyle}>
         <h1>See All The Pokemon!</h1>
+        <ul>
+            {/* loop through the pokemon array */}
+            {this.props.pokemon.map((singlePokemon, i) =>{
+                return (
+                <li>
+                    {singlePokemon.name}
+                </li>
+                )
+               
+
+            })}
+        </ul>
       </div>
       
     )
