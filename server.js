@@ -16,7 +16,9 @@ app.get('/pokemon', (req, res) => {
     res.render('Index.jsx', {pokemon})
 })
 
-
+app.get('/pokemon/:id', (req, res) => {
+    res.send(req.params.id)
+})
 
 
 
