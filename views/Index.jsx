@@ -15,7 +15,8 @@ export default class Index extends Component {
             {this.props.pokemon.map((singlePokemon, i) =>{
                 return (
                 <li>
-                    {singlePokemon.name}
+                    <a href={`/pokemon/${i}`}>{singlePokemon.name}</a>
+                    
                 </li>
                 )
                
