@@ -47,7 +47,7 @@ export default class New extends Component {
                     Name: <br/>
                     <input type="text" name="name" style={inputStyle}/><br/>
                     Image: <br/>
-                    <input type="text" name="name" style={inputStyle} /><br/>
+                    <input type="text" name="img" style={inputStyle} /><br/>
                     <p><strong>Note:</strong>Please enter the URL of the image.</p>
                     <input type="submit" name="" value="Create Pokemon" style={buttonStyle}/>
                 </form>
