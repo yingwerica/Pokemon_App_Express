@@ -20,14 +20,14 @@ const imgStyle = {
 
 export default class Show extends Component {
   render() {
-    const sPokemon = this.props.singlePokemon
+    const sPokemon = this.props.pokemon
     return (
     <html style={{height:'100%'}}>
       <body style={showStyle}>
         <div>
             <h1 style={{textAlign: 'center'}}>Gotta Catch 'Em All</h1>
             <h2 style={{textAlign: 'center'}}>{sPokemon.name.charAt(0).toUpperCase() + sPokemon.name.slice(1)}</h2>
-            <img src={sPokemon.img.concat('.jpg')} alt={`image of ${sPokemon.name}`} style={imgStyle}/>
+            <img src={sPokemon.img} alt={`image of ${sPokemon.name}`} style={imgStyle}/>
             <br />
             <a href="/pokemon" style={imgStyle}>Back</a>
         </div>

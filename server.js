@@ -2,13 +2,11 @@ require('dotenv').config();
 const express = require('express')
 const app = express()
 const port = 3000
-const pokemon = require('./models/pokemon');
+const Pokemon = require('./models/pokemon');
 const mongoose = require('mongoose')
 
-//middleware
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
-app.use(express.urlencoded({extended: false}))  //access req.body object
 
 //connect to database
 mongoose.set('strictQuery', true); //remove deprication warnings
@@ -20,6 +18,13 @@ mongoose.connection.once('open', ()=> {
     console.log('connected to mongo');
 });
 
+//middleware
+app.use((req, res, next) => {
+    console.log('I run for all routes');
+    next();
+});
+app.use(express.urlencoded({extended: false}))  //access req.body object
+
 
 
 ///////routes//////////////////////////////
@@ -29,7 +34,10 @@ app.get('/', (req, res) =>{
 
 //index
 app.get('/pokemon', (req, res) => {
-    res.render('Index', {pokemon})
+    Pokemon.find({}, (error, allPokemon) => {
+        res.render('Index', {pokemons:allPokemon})
+    } 
+   )
 })
 
 //new
@@ -39,7 +47,7 @@ app.get('/pokemon/new', (req, res) => {
 
 //create
 app.post('/pokemon', (req, res) => {
-    pokemon.create(req.body, (error, createdPokemon) => {
+    Pokemon.create(req.body, (error, createdPokemon) => {
         res.redirect('/pokemon')
     })
 })
@@ -47,8 +55,11 @@ app.post('/pokemon', (req, res) => {
 
 //show
 app.get('/pokemon/:id', (req, res) => {
-    res.render('Show', {singlePokemon: pokemon[req.params.id]}) 
-})
+    Pokemon.findById(req.params.id, (err, foundPoke) => {
+        res.render('Show', {pokemon: foundPoke})
+    })
+}) 
+
 
 
 

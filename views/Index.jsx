@@ -18,14 +18,15 @@ export default class Index extends Component {
         <html style={{height:'100%'}}>
         <body style={indexStyle}>
            <div>
-            <h1 style={{textAlign: 'center'}}>See All The Pokemon!</h1>
+            <h1 style={{textAlign: 'center'}}>See All The Pokemon!</h1> <br />
+            <a href="/pokemon/new"> Create a New Pokemon</a>
             <ul>
                 {/* loop through the pokemon array */}
-                {this.props.pokemon.map((singlePokemon, i) =>{
+                {this.props.pokemons.map((singlePokemon, id) =>{
                 return (
                 <li style={{marginLeft: '30%'}}>
                                                 {/* capitalize the first charactor of the name */}
-                    <a href={`/pokemon/${i}`}>{singlePokemon.name.charAt(0).toUpperCase() + singlePokemon.name.slice(1)}</a>
+                    <a href={`/pokemon/${singlePokemon.id}`}>{singlePokemon.name.charAt(0).toUpperCase() + singlePokemon.name.slice(1)}</a>
                     
                 </li>
                 )
