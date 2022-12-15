@@ -19,7 +19,11 @@ export default class Index extends Component {
         <body style={indexStyle}>
            <div>
             <h1 style={{textAlign: 'center'}}>See All The Pokemon!</h1> <br />
-            <a href="/pokemon/new"> Create a New Pokemon</a>
+            <a href="/pokemon/new" style={{
+                          fontSize: '40px',
+                          display: 'flex',
+                          justifyContent: 'center'
+                          }}> Create a New Pokemon</a>
             <ul>
                 {/* loop through the pokemon array */}
                 {this.props.pokemons.map((singlePokemon, id) =>{
