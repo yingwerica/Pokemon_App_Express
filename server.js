@@ -4,6 +4,7 @@ const app = express()
 const port = 3000
 const Pokemon = require('./models/pokemon');
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
 
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
@@ -24,10 +25,10 @@ app.use((req, res, next) => {
     next();
 });
 app.use(express.urlencoded({extended: false}))  //access req.body object
+app.use(methodOverride('_method')) //use methodOverride to enable form send DELETE/PUT request
 
 
-
-///////routes//////////////////////////////
+///////routes (REST implementation)//////////////////////////////
 app.get('/', (req, res) =>{
     res.send('Welcome to the Pokemon App!')
 })
@@ -45,6 +46,7 @@ app.get('/pokemon/new', (req, res) => {
     res.render('New')
 })
 
+
 //create
 app.post('/pokemon', (req, res) => {
     Pokemon.create(req.body, (error, createdPokemon) => {
@@ -60,7 +62,15 @@ app.get('/pokemon/:id', (req, res) => {
     })
 }) 
 
-
+//edit
+//update
+//delete
+//DELETE request send from the delete form in index page
+app.delete('/pokemon/:id', (req, res) => {
+    Pokemon.findByIdAndRemove(req.params.id, (err, foundPoke) => {
+        res.redirect('/pokemon')
+    })
+})
 
 
 
