@@ -31,10 +31,11 @@ export default class Index extends Component {
                 <li style={{marginLeft: '30%'}}>
                                                 {/* capitalize the first charactor of the name */}
                     <a href={`/pokemon/${singlePokemon.id}`}>{singlePokemon.name.charAt(0).toUpperCase() + singlePokemon.name.slice(1)}</a>
-                    {/* set up delete form to send DELETE request to a singlePokemon route */}
+                    {/* set up delete form to send DELETE request to a singlePokemon route to delete the data */}
                     <form action={`/pokemon/${singlePokemon._id}?_method=DELETE`} method="POST" >
                       <input type="submit" value="DELETE" />
                     </form>
+                    <a href={`/pokemon/${singlePokemon.id}/edit`}>Edit this Pokemon</a>
                 </li>
                 )
             })}

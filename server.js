@@ -63,11 +63,22 @@ app.get('/pokemon/:id', (req, res) => {
 }) 
 
 //edit
+app.get('/pokemon/:id/edit', (req, res) => {
+    Pokemon.findById(req.params.id, (err, foundPoke) => {
+        res.render('Edit', {pokemon: foundPoke})
+    })
+})
 //update
+//PUT request is sent from the edit form in edit page, update database
+app.put('/pokemon/:id', (req, res) => {
+    Pokemon.findByIdAndUpdate(req.params.id, req.body, (err, updatedPoke) => {
+        res.redirect(`/pokemon/${req.params.id}`)
+    })
+})
 //delete
-//DELETE request send from the delete form in index page
+//DELETE request is sent from the delete form in index page, delete data
 app.delete('/pokemon/:id', (req, res) => {
-    Pokemon.findByIdAndRemove(req.params.id, (err, foundPoke) => {
+    Pokemon.findByIdAndRemove(req.params.id, (err, deletedPoke) => {
         res.redirect('/pokemon')
     })
 })
