@@ -26,9 +26,9 @@ app.use((req, res, next) => {
 });
 app.use(express.urlencoded({extended: false}))  //access req.body object
 app.use(methodOverride('_method')) //use methodOverride to enable form send DELETE/PUT request
+app.use(express.static('public')) //enable to require the files inside public directory
 
-
-///////routes (REST implementation)//////////////////////////////
+///////routes (RESTful)//////////////////////////////
 app.get('/', (req, res) =>{
     res.send('Welcome to the Pokemon App!')
 })

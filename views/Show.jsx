@@ -29,7 +29,9 @@ export default class Show extends Component {
             <h2 style={{textAlign: 'center'}}>{sPokemon.name.charAt(0).toUpperCase() + sPokemon.name.slice(1)}</h2>
             <img src={sPokemon.img} alt={`image of ${sPokemon.name}`} style={imgStyle}/>
             <br />
-            <a href="/pokemon" style={imgStyle}>Back</a>
+            <a href="/pokemon" style={imgStyle}>Back to Pokemon list</a>
+            <a href={`/pokemon/${sPokemon.id}/edit`} style={imgStyle}>Edit this Pokemon</a>
+
         </div>
       </body>
     </html>  
